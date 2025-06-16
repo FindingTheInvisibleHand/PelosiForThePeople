@@ -10,6 +10,12 @@ import telegram
 from datetime import datetime
 
 if __name__ == '__main__':
+    # create folder structure for 1st run
+    folders_to_create = ['financial_disclosures', 'stock_purchases', 'other_documents']
+    for folder in folders_to_create:
+        if not os.path.exists(folder):
+            os.mkdir(folder)
+
     all_trades = load_trades.get_and_format_all_trades()
     trades_with_tickers_df = load_trades.add_tickers(all_trades)
     write_location = os.path.join('stock_purchases', 'all_purchases')
